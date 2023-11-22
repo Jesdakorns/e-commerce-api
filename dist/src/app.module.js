@@ -17,7 +17,6 @@ const typeorm_1 = require("@nestjs/typeorm");
 const dotenv_1 = require("dotenv");
 const product_module_1 = require("./product/product.module");
 const product_type_module_1 = require("./product-type/product-type.module");
-const cache_manager_1 = require("@nestjs/cache-manager");
 (0, dotenv_1.config)({ path: '.env' });
 let AppModule = exports.AppModule = class AppModule {
 };
@@ -26,13 +25,6 @@ exports.AppModule = AppModule = __decorate([
         imports: [
             auth_module_1.AuthModule,
             user_module_1.UserModule,
-            cache_manager_1.CacheModule.register({
-                host: process.env.REDIS_HOST,
-                port: process.env.REDIS_PORT,
-                password: process.env.REDIS_PASS,
-                ttl: 10000 * 60 * 60,
-                isGlobal: true,
-            }),
             mongoose_1.MongooseModule.forRoot(`${process.env.MONGODB_HOST}`),
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',

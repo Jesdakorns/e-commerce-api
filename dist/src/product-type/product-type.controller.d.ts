@@ -9,7 +9,7 @@ export declare class ProductTypeController {
         title_th: string;
         image: string;
     } & import("./entities/product-type.entity").ProductType>>;
-    findAll(req: any): Promise<import("../response/response-model").ResponseModel<any>>;
+    findAll(req: any): Promise<import("../response/response-model").ResponseModel<import("./entities/product-type.entity").ProductType[]>>;
     findOne(id: string): Promise<import("../response/response-model").ResponseModel<import("./entities/product-type.entity").ProductType>>;
     update(id: string, updateProductTypeDto: UpdateProductTypeDto): Promise<import("../response/response-model").ResponseModel<import("typeorm").UpdateResult>>;
     remove(id: string): Promise<import("../response/response-model").ResponseModel<import("typeorm").UpdateResult>>;

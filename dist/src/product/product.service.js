@@ -17,10 +17,8 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const entities_1 = require("./entities");
 const typeorm_2 = require("typeorm");
-const cache_manager_1 = require("@nestjs/cache-manager");
 let ProductService = exports.ProductService = class ProductService {
-    constructor(cacheManager, productRepository) {
-        this.cacheManager = cacheManager;
+    constructor(productRepository) {
         this.productRepository = productRepository;
     }
     async create(createProductDto) {
@@ -42,8 +40,7 @@ let ProductService = exports.ProductService = class ProductService {
 };
 exports.ProductService = ProductService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, common_1.Inject)(cache_manager_1.CACHE_MANAGER)),
-    __param(1, (0, typeorm_1.InjectRepository)(entities_1.Products)),
-    __metadata("design:paramtypes", [Object, typeorm_2.Repository])
+    __param(0, (0, typeorm_1.InjectRepository)(entities_1.Products)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], ProductService);
 //# sourceMappingURL=product.service.js.map

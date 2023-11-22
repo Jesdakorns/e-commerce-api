@@ -16,13 +16,13 @@ dotenvConfig({ path: '.env' });
   imports: [
     AuthModule,
     UserModule,
-    CacheModule.register({
-      host: process.env.REDIS_HOST,
-      port: process.env.REDIS_PORT,
-      password: process.env.REDIS_PASS,
-      ttl: 10000 * 60 * 60,
-      isGlobal: true,
-    }),
+    // CacheModule.register({
+    //   host: process.env.REDIS_HOST,
+    //   port: process.env.REDIS_PORT,
+    //   password: process.env.REDIS_PASS,
+    //   ttl: 10000 * 60 * 60,
+    //   isGlobal: true,
+    // }),
     MongooseModule.forRoot(`${process.env.MONGODB_HOST}`),
     TypeOrmModule.forRoot({
       type: 'postgres',

@@ -10,7 +10,7 @@ import { Cache } from 'cache-manager';
 @Injectable()
 export class ProductService {
   constructor(
-    @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
+    // @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
     @InjectRepository(Products)
     private productRepository: Repository<Products>,
   ) {}
