@@ -1,15 +1,16 @@
 {
+    "buildCommand": "npm run",
     "version":2,
     "builds":[
         {
-            "src":"der/src/main.js",
+            "src":"src/main.js",
             "use":"@vercel/node"
         }
     ],
     "routes":[
         {
             "src":"/(.*)",
-            "dest":"der/src/main.js",
+            "dest":"src/main.js",
             "methods":[
                 "GET",
                 "POST",
