@@ -11,7 +11,7 @@ import { ProductTypeModule } from './product-type/product-type.module';
 import { CacheModule } from '@nestjs/cache-manager';
 
 dotenvConfig({ path: '.env' });
-
+console.log('process.env.DATABASE_HOST', process.env.DATABASE_HOST);
 @Module({
   imports: [
     AuthModule,

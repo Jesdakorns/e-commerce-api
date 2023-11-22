@@ -17,6 +17,7 @@ const dotenv_1 = require("dotenv");
 const product_module_1 = require("./product/product.module");
 const product_type_module_1 = require("./product-type/product-type.module");
 (0, dotenv_1.config)({ path: '.env' });
+console.log('process.env.DATABASE_HOST', process.env.DATABASE_HOST);
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
