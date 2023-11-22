@@ -18,7 +18,7 @@ dotenvConfig({ path: '.env' });
 console.log('process.env.JWT_KEY', process.env.JWT_KEY);
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'user', schema: UserSchema }]),
+    // MongooseModule.forFeature([{ name: 'user', schema: UserSchema }]),
     JwtModule.register({
       global: true,
       secret: `${process.env.JWT_KEY}`,

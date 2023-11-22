@@ -8,7 +8,7 @@ import { Users, Passwords } from './entities';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'user', schema: UserSchema }]),
+    // MongooseModule.forFeature([{ name: 'user', schema: UserSchema }]),
     TypeOrmModule.forFeature([Users, Passwords]),
   ],
   controllers: [UserController],

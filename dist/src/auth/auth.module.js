@@ -16,8 +16,6 @@ const local_strategy_1 = require("./strategies/local-strategy");
 const jwt_strategy_1 = require("./strategies/jwt-strategy");
 const refreshToken_strategy_1 = require("./strategies/refreshToken-strategy");
 const user_module_1 = require("../user/user.module");
-const user_schema_1 = require("../schema/user.schema");
-const mongoose_1 = require("@nestjs/mongoose");
 const typeorm_1 = require("@nestjs/typeorm");
 const entities_1 = require("../user/entities");
 const dotenv_1 = require("dotenv");
@@ -28,7 +26,6 @@ let AuthModule = exports.AuthModule = class AuthModule {
 exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: 'user', schema: user_schema_1.UserSchema }]),
             jwt_1.JwtModule.register({
                 global: true,
                 secret: `${process.env.JWT_KEY}`,

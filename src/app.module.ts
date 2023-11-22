@@ -23,7 +23,7 @@ dotenvConfig({ path: '.env' });
     //   ttl: 10000 * 60 * 60,
     //   isGlobal: true,
     // }),
-    MongooseModule.forRoot(`${process.env.MONGODB_HOST}`),
+    // MongooseModule.forRoot(`${process.env.MONGODB_HOST}`),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: `${process.env.DATABASE_HOST}`,
