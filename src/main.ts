@@ -10,6 +10,7 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Enable credentials (cookies, authorization headers)
   });
+  console.log('process.env.DATABASE_HOST', process.env);
 
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT || 8000);

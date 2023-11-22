@@ -11,6 +11,7 @@ async function bootstrap() {
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
     });
+    console.log('process.env.DATABASE_HOST', process.env);
     app.useGlobalPipes(new common_1.ValidationPipe());
     await app.listen(process.env.PORT || 8000);
 }
