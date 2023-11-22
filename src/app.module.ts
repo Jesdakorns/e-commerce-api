@@ -1,20 +1,20 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
+// import { AuthModule } from './auth/auth.module';
+// import { UserModule } from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { config as dotenvConfig } from 'dotenv';
-import { ProductModule } from './product/product.module';
-import { ProductTypeModule } from './product-type/product-type.module';
+// import { ProductModule } from './product/product.module';
+// import { ProductTypeModule } from './product-type/product-type.module';
 import { CacheModule } from '@nestjs/cache-manager';
 
 dotenvConfig({ path: '.env' });
 @Module({
   imports: [
-    AuthModule,
-    UserModule,
+    // AuthModule,
+    // UserModule,
     // CacheModule.register({
     //   host: process.env.REDIS_HOST,
     //   port: process.env.REDIS_PORT,
@@ -35,8 +35,8 @@ dotenvConfig({ path: '.env' });
       autoLoadEntities: true,
       synchronize: true,
     }),
-    ProductModule,
-    ProductTypeModule,
+    // ProductModule,
+    // ProductTypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

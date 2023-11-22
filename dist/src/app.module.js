@@ -10,20 +10,14 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const auth_module_1 = require("./auth/auth.module");
-const user_module_1 = require("./user/user.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const dotenv_1 = require("dotenv");
-const product_module_1 = require("./product/product.module");
-const product_type_module_1 = require("./product-type/product-type.module");
 (0, dotenv_1.config)({ path: '.env' });
 let AppModule = exports.AppModule = class AppModule {
 };
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            auth_module_1.AuthModule,
-            user_module_1.UserModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
                 host: `${process.env.DATABASE_HOST}`,
@@ -36,8 +30,6 @@ exports.AppModule = AppModule = __decorate([
                 autoLoadEntities: true,
                 synchronize: true,
             }),
-            product_module_1.ProductModule,
-            product_type_module_1.ProductTypeModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
