@@ -10,6 +10,11 @@ import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { CacheModule } from '@nestjs/cache-manager';
 import { AuthModule } from './auth/auth.module';
+import { ProductModule } from './product/product.module';
+import { ProductTypeModule } from './product-type/product-type.module';
+import { PromotionModule } from './promotion/promotion.module';
+import { UploadModule } from './upload/upload.module';
+import { OrderModule } from './order/order.module';
 
 dotenvConfig({ path: '.env' });
 @Module({
@@ -47,15 +52,23 @@ dotenvConfig({ path: '.env' });
       autoLoadEntities: true,
       synchronize: true,
       logging: true,
-      ssl: true,
+      ssl: process.env.NODE_ENV === 'production' ? true : false,
       extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
+        ssl:
+          process.env.NODE_ENV === 'production'
+            ? {
+                rejectUnauthorized: false,
+              }
+            : undefined,
       },
     }),
     AuthModule,
     UserModule,
+    ProductModule,
+    ProductTypeModule,
+    PromotionModule,
+    UploadModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
