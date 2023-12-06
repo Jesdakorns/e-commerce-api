@@ -9,7 +9,7 @@ import { MulterModule } from '@nestjs/platform-express';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 // import { AuthModule } from './auth/auth.module';
-// import { UserModule } from './user/user.module';
+import { UserModule } from './user/user.module';
 dotenvConfig({ path: '.env' });
 @Module({
   imports: [
@@ -52,7 +52,7 @@ dotenvConfig({ path: '.env' });
     }),
     MongooseModule.forRoot(`${process.env.MONGODB_HOST}`),
     // AuthModule,
-    // UserModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
