@@ -31,11 +31,13 @@ export class AuthController {
   @UseGuards(LocalGuard)
   @Post('login')
   async login(@Body() createAuthDto: LoginFormDto) {
-    console.log(
-      `🚀 ~ file: auth.controller.ts ~ line 28 ~ AuthController ~ login ~ createAuthDto`,
-      createAuthDto,
-    );
     return this.authService.login(createAuthDto);
+  }
+
+  @UseGuards(LocalGuard)
+  @Get('login')
+  async getlogin() {
+    return 'test login';
   }
 
   @UseGuards(GoogleOauthGuard)
@@ -46,19 +48,11 @@ export class AuthController {
         headers: { Authorization: `Bearer ${createAuthDto.accessToken}` },
       })
       .then((res) => res.data);
-    console.log(
-      `🚀 ~ file: auth.controller.ts ~ line 72 ~ AuthController ~ loginGoogle ~ userInfo`,
-      userInfo,
-    );
     return this.authService.loginGoogle(userInfo);
   }
 
   @Post('register')
   async register(@Body() registerAuthDto: RegisterFormDto) {
-    console.log(
-      `🚀 ~ file: auth.controller.ts ~ line 42 ~ AuthController ~ register ~ registerAuthDto`,
-      registerAuthDto,
-    );
     return this.authService.register(registerAuthDto);
   }
 
