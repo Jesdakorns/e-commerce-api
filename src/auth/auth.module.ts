@@ -7,7 +7,7 @@ import { LocalStrategy } from './strategies/local-strategy';
 import { JWTStrategy } from './strategies/jwt-strategy';
 import { RefreshTokenStrategy } from './strategies/refreshToken-strategy';
 import { UserModule } from 'src/user/user.module';
-import { UserSchema } from 'src/schema/user.schema';
+// import { UserSchema } from 'src/schema/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users, Passwords } from 'src/user/entities';
