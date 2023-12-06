@@ -10,6 +10,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 // import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { JwtModule } from '@nestjs/jwt';
 dotenvConfig({ path: '.env' });
 @Module({
   imports: [
@@ -43,12 +44,23 @@ dotenvConfig({ path: '.env' });
       autoLoadEntities: true,
       synchronize: true,
       logging: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-      extra: {
-        sslmode: 'require',
-      },
+      ssl:
+        process.env.NODE_ENV === 'production'
+          ? {
+              rejectUnauthorized: false,
+            }
+          : undefined,
+      extra:
+        process.env.NODE_ENV === 'production'
+          ? {
+              sslmode: 'require',
+            }
+          : undefined,
+    }),
+    JwtModule.register({
+      global: true,
+      secret: `${process.env.JWT_KEY}`,
+      signOptions: { expiresIn: '7d' },
     }),
     MongooseModule.forRoot(`${process.env.MONGODB_HOST}`),
     // AuthModule,
