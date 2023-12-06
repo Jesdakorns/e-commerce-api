@@ -1,34 +1,72 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { UserService } from 'src/user/user.service';
+import { RefreshTokenGuard } from './guards/refreshToken.guard';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Req,
+  UseGuards,
+  Query,
+  Request,
+  Res,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { LoginFormDto, LoginGoogleFormDto } from './dto/login-auth.dto';
+import { LocalGuard } from './guards/local-auth.guard';
+import { JWTGuard } from './guards/jwt-auth.guard';
+import { RegisterFormDto } from './dto/register-auth.dto';
+import { GoogleOauthGuard } from './guards/google-oauth.guard';
+import { AuthGuard } from '@nestjs/passport';
+import { Response } from 'express';
+import axios from 'axios';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private userService: UserService,
+  ) {}
 
-  @Post()
-  create(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.create(createAuthDto);
+  @UseGuards(LocalGuard)
+  @Post('login')
+  async login(@Body() createAuthDto: LoginFormDto) {
+    return this.authService.login(createAuthDto);
   }
 
-  @Get()
-  findAll() {
-    return this.authService.findAll();
+  @UseGuards(LocalGuard)
+  @Get('login')
+  async getlogin() {
+    return 'test login';
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id);
+  @UseGuards(GoogleOauthGuard)
+  @Post('login/google')
+  async loginGoogle(@Body() createAuthDto: LoginGoogleFormDto) {
+    const userInfo = await axios
+      .get('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: { Authorization: `Bearer ${createAuthDto.accessToken}` },
+      })
+      .then((res) => res.data);
+    return this.authService.loginGoogle(userInfo);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
-    return this.authService.update(+id, updateAuthDto);
+  @Post('register')
+  async register(@Body() registerAuthDto: RegisterFormDto) {
+    return this.authService.register(registerAuthDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authService.remove(+id);
+  @UseGuards(JWTGuard)
+  @UseGuards(RefreshTokenGuard)
+  @Post('refresh')
+  async refreshToken(@Req() req) {
+    return this.authService.refreshToken(req.body.refresh);
+  }
+
+  @UseGuards(JWTGuard)
+  @Get('me')
+  async user(@Req() req) {
+    const token = req?.headers?.authorization?.split('Bearer ')?.[1];
+    return this.authService.me(token);
   }
 }

@@ -2,9 +2,56 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-
+import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { config as dotenvConfig } from 'dotenv';
+import { CacheModule } from '@nestjs/cache-manager';
+import { MulterModule } from '@nestjs/platform-express';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+dotenvConfig({ path: '.env' });
 @Module({
-  imports: [AuthModule],
+  imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), 'public'),
+      serveRoot: '/public',
+      serveStaticOptions: {
+        extensions: ['jpg', 'jpeg', 'png', 'gif'],
+        index: false,
+      },
+    }),
+    MulterModule.register({
+      dest: './files',
+    }),
+    CacheModule.register({
+      host: process.env.REDIS_HOST,
+      port: process.env.REDIS_PORT,
+      password: process.env.REDIS_PASS,
+      ttl: 10000 * 60 * 60,
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: `${process.env.DATABASE_HOST}`,
+      port: +process.env.DATABASE_PORT,
+      username: `${process.env.DATABASE_USERNAME}`,
+      password: `${process.env.DATABASE_PASSWORD}`,
+      database: `${process.env.DATABASE_NAME}`,
+      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      migrations: ['dist/migrations/*{.ts,.js}'],
+      autoLoadEntities: true,
+      synchronize: true,
+      logging: true,
+      ssl: {
+        rejectUnauthorized: false,
+      },
+      extra: {
+        sslmode: 'require',
+      },
+    }),
+    MongooseModule.forRoot(`${process.env.MONGODB_HOST}`),
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
