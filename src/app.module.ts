@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { MongooseModule } from '@nestjs/mongoose';
 import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: '.env' });
@@ -18,6 +19,7 @@ dotenvConfig({ path: '.env' });
         index: false,
       },
     }),
+    MongooseModule.forRoot(`${process.env.MONGODB_HOST}`),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: `${process.env.DATABASE_HOST}`,
