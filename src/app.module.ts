@@ -43,12 +43,12 @@ dotenvConfig({ path: '.env' });
       autoLoadEntities: true,
       synchronize: true,
       logging: true,
-      // ssl: {
-      //   rejectUnauthorized: false,
-      // },
-      // extra: {
-      //   sslmode: 'require',
-      // },
+      ssl: {
+        rejectUnauthorized: false,
+      },
+      extra: {
+        sslmode: 'require',
+      },
     }),
     MongooseModule.forRoot(`${process.env.MONGODB_HOST}`),
     // AuthModule,
