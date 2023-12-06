@@ -6,7 +6,7 @@ import { Products } from './entities';
 import { Between, EntityManager, Like, Repository } from 'typeorm';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
-import { ResponseModel } from '../response/response-model';
+import { ResponseModel } from '../../response/response-model';
 import * as dayjs from 'dayjs';
 import { JwtService } from '@nestjs/jwt';
 import { ProductType } from '../product-type/entities/product-type.entity';

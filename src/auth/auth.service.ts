@@ -10,7 +10,7 @@ import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, Repository } from 'typeorm';
 import { RegisterFormDto } from './dto/register-auth.dto';
-import { ResponseModel } from 'src/response/response-model';
+import { ResponseModel } from '@/response/response-model';
 import { Passwords, Users } from 'src/user/entities';
 import { Provider } from 'src/user/entities/users.entity';
 

@@ -6,7 +6,7 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { ESelect, Promotion, PromotionSub } from './entities/promotion.entity';
 import { Repository } from 'typeorm';
 import { Cache } from 'cache-manager';
-import { ResponseModel } from '../response/response-model';
+import { ResponseModel } from '../../response/response-model';
 import { UploadService } from '../upload/upload.service';
 
 @Injectable()

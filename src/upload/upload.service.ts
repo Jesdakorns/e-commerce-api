@@ -3,7 +3,7 @@ import { CreateUploadDto } from './dto/create-upload.dto';
 import { UpdateUploadDto } from './dto/update-upload.dto';
 import * as sharp from 'sharp';
 import { promises as fsPromises } from 'fs';
-import { ResponseModel } from '../response/response-model';
+import { ResponseModel } from '../../response/response-model';
 
 @Injectable()
 export class UploadService {

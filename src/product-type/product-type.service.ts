@@ -4,7 +4,7 @@ import { UpdateProductTypeDto } from './dto/update-product-type.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductType, TProductType } from './entities/product-type.entity';
 import { Repository } from 'typeorm';
-import { ResponseModel } from 'src/response/response-model';
+import { ResponseModel } from '@/response/response-model';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { UploadService } from '../upload/upload.service';

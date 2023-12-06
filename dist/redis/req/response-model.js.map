@@ -1,1 +1,0 @@
-{"version":3,"file":"response-model.js","sourceRoot":"","sources":["../../../redis/req/response-model.ts"],"names":[],"mappings":";;;AAEA,MAAa,aAAa;IAIxB,YAAY,MAAsB,EAAE,IAAO;QACzC,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;QACrB,IAAI,CAAC,IAAI,GAAG,IAAI,CAAC;IACnB,CAAC;CACF;AARD,sCAQC"}

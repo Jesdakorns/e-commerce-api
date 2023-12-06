@@ -52,12 +52,18 @@ dotenvConfig({ path: '.env' });
       autoLoadEntities: true,
       synchronize: true,
       logging: true,
-      ssl: {
-        rejectUnauthorized: false,
-      },
-      extra: {
-        sslmode: 'require',
-      },
+      ssl:
+        process.env.NODE_ENV === 'production'
+          ? {
+              rejectUnauthorized: false,
+            }
+          : undefined,
+      extra:
+        process.env.NODE_ENV === 'production'
+          ? {
+              sslmode: 'require',
+            }
+          : undefined,
     }),
     ProductModule,
     ProductTypeModule,
