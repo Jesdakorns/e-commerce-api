@@ -12,7 +12,7 @@ async function bootstrap() {
     new ExpressAdapter(),
   );
   app.enableCors({
-    origin: '*', // Allow requests from your frontend application
+    origin: ['http://localhost:3000', 'https://e-commerce-web-eta.vercel.app'], // Allow requests from your frontend application
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Enable credentials (cookies, authorization headers)
   });
