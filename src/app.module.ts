@@ -15,6 +15,7 @@ import { ProductTypeModule } from './product-type/product-type.module';
 import { PromotionModule } from './promotion/promotion.module';
 import { UploadModule } from './upload/upload.module';
 import { OrderModule } from './order/order.module';
+import { ProductOrder } from './order/entities/productOrder.entity';
 
 dotenvConfig({ path: '.env' });
 @Module({
@@ -67,6 +68,7 @@ dotenvConfig({ path: '.env' });
     ProductModule,
     ProductTypeModule,
     PromotionModule,
+    ProductOrder,
     UploadModule,
     OrderModule,
   ],
