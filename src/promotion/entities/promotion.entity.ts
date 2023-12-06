@@ -1,4 +1,3 @@
-import { Remove } from 'src/user/entities/users.entity';
 import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
 
 export enum ESelect {

@@ -4,13 +4,13 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { LoginFormDto, LoginGoogleFormDto, Mode } from './dto/login-auth.dto';
+import { LoginFormDto, LoginGoogleFormDto } from './dto/login-auth.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, Repository } from 'typeorm';
 import { RegisterFormDto } from './dto/register-auth.dto';
-import { ResponseModel } from '@/response/response-model';
+import { ResponseModel } from 'response/response-model';
 import { Passwords, Users } from 'src/user/entities';
 import { Provider } from 'src/user/entities/users.entity';
 
@@ -138,13 +138,10 @@ export class AuthService {
   }
 
   async validateUser(email: string, password: string) {
-    const user = await this.userRepository
-      .createQueryBuilder('user')
-      .innerJoinAndSelect('user.password', 'password')
-      .where({
-        email,
-      })
-      .getOne();
+    const user = await this.userRepository.findOne({
+      relations: ['password'],
+      where: { email },
+    });
     const isPassword = await bcrypt.compare(
       password,
       user?.password?.password || '',

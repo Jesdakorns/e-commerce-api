@@ -29,8 +29,8 @@ export class UserService {
   }
 
   findAll() {
-    // return this.userModel.find().exec();
-    return '';
+    return this.userRepository.find();
+    // return '';
   }
 
   async findOne(token: string) {

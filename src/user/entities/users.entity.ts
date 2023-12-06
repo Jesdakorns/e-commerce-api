@@ -1,17 +1,20 @@
-import { IsEmail } from 'class-validator';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   OneToOne,
-  JoinColumn,
+  // JoinColumn,
   Index,
-  ManyToOne,
+  JoinColumn,
   OneToMany,
+  // ManyToOne,
+  // OneToMany,
 } from 'typeorm';
 import { Passwords } from '.';
 import { ProductOrder } from '@/src/order/entities/productOrder.entity';
 import { ProductReview, Products } from '@/src/product/entities';
+// import { ProductOrder } from '@/src/order/entities/productOrder.entity';
+// import { ProductReview, Products } from '@/src/product/entities';
 
 export enum Gender {
   MALE = 'male',
@@ -35,7 +38,6 @@ export class Users {
   id: number;
 
   @Column({ unique: true })
-  @IsEmail()
   @Index()
   email: string;
 
@@ -65,7 +67,8 @@ export class Users {
   })
   provider?: Provider;
 
-  @OneToOne(() => Passwords, (password) => password.userId, { cascade: true })
+  @OneToOne(() => Passwords, (password) => password.userId)
+  @JoinColumn()
   password: Passwords;
 
   @OneToMany(() => ProductOrder, (order) => order.customer)

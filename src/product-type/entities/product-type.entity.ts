@@ -1,15 +1,10 @@
 import { Products } from '@/src/product/entities';
-import { Remove } from 'src/user/entities/users.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   Index,
-  OneToOne,
-  ManyToOne,
   OneToMany,
-  ManyToMany,
-  JoinTable,
 } from 'typeorm';
 
 export type TProductType = {

@@ -3,10 +3,10 @@ import { CreatePromotionDto } from './dto/create-promotion.dto';
 import { UpdatePromotionDto } from './dto/update-promotion.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
-import { ESelect, Promotion, PromotionSub } from './entities/promotion.entity';
+import { Promotion, PromotionSub } from './entities/promotion.entity';
 import { Repository } from 'typeorm';
 import { Cache } from 'cache-manager';
-import { ResponseModel } from '../../response/response-model';
+import { ResponseModel } from 'response/response-model';
 import { UploadService } from '../upload/upload.service';
 
 @Injectable()
@@ -26,9 +26,8 @@ export class PromotionService {
   }
 
   async getRedisPromotionSub() {
-    const redisPromotionSub: string = await this.cacheManager.get(
-      'promotionSub',
-    );
+    const redisPromotionSub: string =
+      await this.cacheManager.get('promotionSub');
     return redisPromotionSub;
   }
 

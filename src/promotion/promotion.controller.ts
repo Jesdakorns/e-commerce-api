@@ -7,24 +7,13 @@ import {
   Param,
   Delete,
   UseGuards,
-  UploadedFiles,
   Headers,
-  Res,
-  NotFoundException,
   Query,
-  RawBodyRequest,
-  Req,
 } from '@nestjs/common';
 import { PromotionService } from './promotion.service';
 import { CreatePromotionDto } from './dto/create-promotion.dto';
 import { UpdatePromotionDto } from './dto/update-promotion.dto';
 import { JWTGuard } from '../auth/guards/jwt-auth.guard';
-import { UploadedFile, UseInterceptors } from '@nestjs/common';
-import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
-import { createWriteStream } from 'fs';
-import { finished } from 'stream/promises';
 
 @Controller('promotion')
 @UseGuards(JWTGuard)

@@ -1,24 +1,12 @@
 import { UserService } from 'src/user/user.service';
 import { RefreshTokenGuard } from './guards/refreshToken.guard';
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Req,
-  UseGuards,
-  Query,
-  Request,
-  Res,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginFormDto, LoginGoogleFormDto } from './dto/login-auth.dto';
 import { LocalGuard } from './guards/local-auth.guard';
 import { JWTGuard } from './guards/jwt-auth.guard';
 import { RegisterFormDto } from './dto/register-auth.dto';
 import { GoogleOauthGuard } from './guards/google-oauth.guard';
-import { AuthGuard } from '@nestjs/passport';
-import { Response } from 'express';
 import axios from 'axios';
 
 @Controller('auth')

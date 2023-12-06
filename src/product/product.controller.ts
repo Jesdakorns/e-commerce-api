@@ -28,10 +28,6 @@ export class ProductController {
 
   @Get('all')
   findAll(@Query() query) {
-    console.log(
-      `🚀 ~ file: product.controller.ts ~ line 29 ~ ProductController ~ findAll ~ query`,
-      query,
-    );
     return this.productService.findAll(query);
   }
 

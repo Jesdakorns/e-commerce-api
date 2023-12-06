@@ -3,9 +3,7 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  OneToOne,
   Index,
-  OneToMany,
   ManyToOne,
 } from 'typeorm';
 import { Products } from './index';

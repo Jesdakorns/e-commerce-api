@@ -7,10 +7,6 @@ import {
   Param,
   Delete,
   UseGuards,
-  Req,
-  UseInterceptors,
-  UploadedFile,
-  UploadedFiles,
 } from '@nestjs/common';
 import { ProductTypeService } from './product-type.service';
 import { CreateProductTypeDto } from './dto/create-product-type.dto';
@@ -28,7 +24,7 @@ export class ProductTypeController {
   }
 
   @Get()
-  findAll(@Req() req) {
+  findAll() {
     return this.productTypeService.findAll();
   }
 

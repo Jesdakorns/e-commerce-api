@@ -3,22 +3,15 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Products } from './entities';
-import { Between, EntityManager, Like, Repository } from 'typeorm';
+import { Between, EntityManager, Repository } from 'typeorm';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
-import { ResponseModel } from '../../response/response-model';
+import { ResponseModel } from 'response/response-model';
 import * as dayjs from 'dayjs';
 import { JwtService } from '@nestjs/jwt';
 import { ProductType } from '../product-type/entities/product-type.entity';
 import { convertSkipPaginate } from '../utils/pagination';
 import { ProductOrder } from '../order/entities/productOrder.entity';
-import { Users } from '../user/entities';
-
-type WhereProps =
-  | {
-      name?: string;
-    }
-  | any;
 
 @Injectable()
 export class ProductService {
