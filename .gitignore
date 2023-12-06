@@ -1,5 +1,6 @@
 # compiled output
 # /dist
+/dist
 /node_modules
 /public/*
 
@@ -36,5 +37,4 @@ lerna-debug.log*
 !.vscode/extensions.json
 .vercel
 .env
-/dist/*
 .vercel
