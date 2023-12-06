@@ -9,6 +9,7 @@ import { config as dotenvConfig } from 'dotenv';
 import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { CacheModule } from '@nestjs/cache-manager';
+import { AuthModule } from './auth/auth.module';
 
 dotenvConfig({ path: '.env' });
 @Module({
@@ -53,6 +54,7 @@ dotenvConfig({ path: '.env' });
         },
       },
     }),
+    AuthModule,
     UserModule,
   ],
   controllers: [AppController],

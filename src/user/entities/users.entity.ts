@@ -5,6 +5,7 @@ import {
   OneToOne,
   // JoinColumn,
   Index,
+  JoinColumn,
   // ManyToOne,
   // OneToMany,
 } from 'typeorm';
@@ -63,7 +64,8 @@ export class Users {
   })
   provider?: Provider;
 
-  @OneToOne(() => Passwords, (password) => password.userId, { cascade: true })
+  @OneToOne(() => Passwords, (password) => password.userId)
+  @JoinColumn()
   password: Passwords;
 
   // @OneToMany(() => ProductOrder, (order) => order.customer)
