@@ -6,10 +6,13 @@ import {
   // JoinColumn,
   Index,
   JoinColumn,
+  OneToMany,
   // ManyToOne,
   // OneToMany,
 } from 'typeorm';
 import { Passwords } from '.';
+import { ProductOrder } from '@/src/order/entities/productOrder.entity';
+import { ProductReview, Products } from '@/src/product/entities';
 // import { ProductOrder } from '@/src/order/entities/productOrder.entity';
 // import { ProductReview, Products } from '@/src/product/entities';
 
@@ -68,14 +71,14 @@ export class Users {
   @JoinColumn()
   password: Passwords;
 
-  // @OneToMany(() => ProductOrder, (order) => order.customer)
-  // productOrder: ProductOrder[];
+  @OneToMany(() => ProductOrder, (order) => order.customer)
+  productOrder: ProductOrder[];
 
-  // @OneToMany(() => ProductReview, (review) => review.user)
-  // review: ProductReview[];
+  @OneToMany(() => ProductReview, (review) => review.user)
+  review: ProductReview[];
 
-  // @OneToMany(() => Products, (product) => product.user)
-  // product: Products[];
+  @OneToMany(() => Products, (product) => product.user)
+  product: Products[];
 
   @Column({ type: 'bool', default: false })
   @Index()
