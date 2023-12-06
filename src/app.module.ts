@@ -8,7 +8,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: '.env' });
-
+console.log('__dirname', __dirname + '/../**/*.entity{.ts,.js}');
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -27,7 +27,7 @@ dotenvConfig({ path: '.env' });
       username: `${process.env.DATABASE_USERNAME}`,
       password: `${process.env.DATABASE_PASSWORD}`,
       database: `${process.env.DATABASE_NAME}`,
-      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       migrations: ['dist/migrations/*{.ts,.js}'],
       autoLoadEntities: true,
       synchronize: true,
